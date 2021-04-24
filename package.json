@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "@slack/webhook": "^5.0.2",
+    "@wdio/cli": "^7.3.0",
+    "node-cron": "^3.0.0",
+    "shelljs": "^0.8.4"
+  },
+  "devDependencies": {
+    "@wdio/cucumber-framework": "^7.3.0",
+    "@wdio/junit-reporter": "^7.4.2",
+    "@wdio/local-runner": "^7.3.0",
+    "@wdio/spec-reporter": "^7.3.0",
+    "@wdio/sync": "^7.3.0",
+    "chromedriver": "^89.0.0",
+    "wdio-chromedriver-service": "^7.0.0",
+    "wdio-slack-service": "^2.0.8"
+  },
+  "name": "wdio-new-framework-js",
+  "version": "1.0.0",
+  "description": "test framework by Saiprakash Biradar",
+  "main": "wdio.conf.js",
+  "scripts": {
+    "test": "npx wdio run ./wdio.conf.js"
+  },
+  "author": "Saiprakash Biradar",
+  "license": "UNLICENSED"
+}
