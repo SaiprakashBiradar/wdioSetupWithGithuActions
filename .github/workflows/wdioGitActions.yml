@@ -15,9 +15,7 @@ jobs:
         node-version: [15.x]
 
     steps:
-    - uses: nanasess/setup-chromedriver@master
-      with:
-       chromedriver-version: '77.0.3865.40'
+
     - run: |
        export DISPLAY=:99
        chromedriver --url-base=/wd/hub &
