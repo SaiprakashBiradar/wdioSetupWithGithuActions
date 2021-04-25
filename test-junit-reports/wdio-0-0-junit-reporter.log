@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="The Internet Guinea Pig Website" timestamp="2021-04-24T18:44:25" time="7.992" tests="2" failures="0" errors="0" skipped="0">
+  <testsuite name="The Internet Guinea Pig Website" timestamp="2021-04-25T08:47:55" time="8.795" tests="2" failures="0" errors="0" skipped="0">
     <properties>
       <property name="specId" value="0"/>
       <property name="featureName" value="The Internet Guinea Pig Website"/>
       <property name="capabilities" value="chrome.90_0_4430_85.macosx"/>
       <property name="featureFile" value="./src/features/login.feature"/>
     </properties>
-    <testcase classname="CucumberJUnitReport-chrome.90_0_4430_85.macosx.The Internet Guinea Pig Website" name="As a user I can log into the secure area" time="6.867">
+    <testcase classname="CucumberJUnitReport-chrome.90_0_4430_85.macosx.The Internet Guinea Pig Website" name="As a user I can log into the secure area" time="7.662">
       <system-out><![CDATA[
 ✅ Given I am on the login page✅ When I login with tomsmith and SuperSecretPassword!✅ Then I should see a flash message saying You logged into a secure area!
 ]]></system-out>
     </testcase>
-    <testcase classname="CucumberJUnitReport-chrome.90_0_4430_85.macosx.The Internet Guinea Pig Website" name="As a user I can log into the secure area" time="1.112">
+    <testcase classname="CucumberJUnitReport-chrome.90_0_4430_85.macosx.The Internet Guinea Pig Website" name="As a user I can log into the secure area" time="1.123">
       <system-out><![CDATA[
 ✅ Given I am on the login page✅ When I login with foobar and barfoo✅ Then I should see a flash message saying Your username is invalid!
 ]]></system-out>
