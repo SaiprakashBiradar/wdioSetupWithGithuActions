@@ -1,40 +1,40 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node CI
+# name: Node CI
 
-on: [push]
+# on: [push]
 
-jobs:
-  build:
+# jobs:
+#   build:
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [15.x]
+#     strategy:
+#       matrix:
+#         node-version: [15.x]
 
-    steps:
-    - uses: nanasess/setup-chromedriver@master
-      with:
-       chromedriver-version: '91.0.4472.19'
-    - run: |
-       export DISPLAY=:99
-       chromedriver --url-base=/wd/hub &
-       sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
+#     steps:
+#     - uses: nanasess/setup-chromedriver@master
+#       with:
+#        chromedriver-version: '91.0.4472.19'
+#     - run: |
+#        export DISPLAY=:99
+#        chromedriver --url-base=/wd/hub &
+#        sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
     
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
-      run: |
-        npm ci
-        npm run build --if-present
-        ./node_modules/.bin/wdio wdio.conf.js
-      env:
-        CI: true
+#     - uses: actions/checkout@v1
+#     - name: Use Node.js ${{ matrix.node-version }}
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: ${{ matrix.node-version }}
+#     - name: npm install, build, and test
+#       run: |
+#         npm ci
+#         npm run build --if-present
+#         ./node_modules/.bin/wdio wdio.conf.js
+#       env:
+#         CI: true
 ###########################
 # name: "Test chromedriver on *NIX"
 # on:
@@ -106,3 +106,23 @@ jobs:
 #         chromedriver --url-base=/wd/hub &
 #         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # disable headless mode
 #         python3 $GITHUB_WORKSPACE/__tests__/chromedriver.py
+#########################
+
+name: Multiple Environments Example
+
+on: [push, pull_request]
+
+jobs:
+  e2e-test-on-ubuntu-with-local-chrome:
+    runs-on: ubuntu-latest
+    #runs-on: macos-latest
+    #runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup
+        run: npm install
+      - name: Test
+        run: npm run test
+        env:
+          ENV_PATH: environment/QS
