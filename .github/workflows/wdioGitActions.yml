@@ -15,7 +15,7 @@ jobs:
         node-version: [15.x]
 
     steps:
-    - uses: nanasess/setup-chromedriver@main
+    - uses: nanasess/setup-chromedriver@master
       with:
        chromedriver-version: '91.0.4472.19'
     - run: |
