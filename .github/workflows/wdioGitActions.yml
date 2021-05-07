@@ -1,3 +1,19 @@
+
+name: Run tests on vhrome with Git hub actions
+
+on: [push, pull_request]
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup
+        run: npm install
+      - name: Test
+        run: npm run test
+
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
@@ -107,22 +123,3 @@
 #         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # disable headless mode
 #         python3 $GITHUB_WORKSPACE/__tests__/chromedriver.py
 #########################
-
-name: Multiple Environments Example
-
-on: [push, pull_request]
-
-jobs:
-  e2e-test-on-ubuntu-with-local-chrome:
-    runs-on: ubuntu-latest
-    #runs-on: macos-latest
-    #runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup
-        run: npm install
-      - name: Test
-        run: npm run test
-        env:
-          ENV_PATH: environment/QS
