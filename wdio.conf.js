@@ -16,14 +16,15 @@ exports.config = {
     // should work too though). These services define specific user and key (or access key)
     // values you need to put in here in order to connect to these services.
     //
-    user: process.env.SAUCE_USERNAME,
-    key: process.env.SAUCE_ACCESS_KEY,
+    // user: "oauth-saiprakashrbiradar-54856",
+    // key: "42af897a-df99-4822-8573-946bcfff94ea",
     //
     // If you run your tests on Sauce Labs you can specify the region you want to run your tests
     // in via the `region` property. Available short handles for regions are `us` (default) and `eu`.
     // These regions are used for the Sauce Labs VM cloud and the Sauce Labs Real Device Cloud.
     // If you don't provide the region it will default for the `us`
-    region: 'us',
+    region: 'eu',
+   
     //
     // ==================
     // Specify Test Files
@@ -77,7 +78,21 @@ exports.config = {
         maxInstances: 5,
         //
         browserName: 'chrome',
-        acceptInsecureCerts: true
+        acceptInsecureCerts: true,
+        // 'goog:chromeOptions': {
+        //  args: ['headless', 'disable-gpu'],
+        //  },
+
+
+
+        //  "browserName": 'chrome',
+        //  "browserVersion": '90.0',
+        //  "platformName": 'Windows 10',
+        //  "sauce:options": {
+        //  }
+
+
+
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
@@ -131,14 +146,19 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: [
-        'chromedriver'
-    //     ,
-    //     [slack, {
-    //     webhook: process.env.SLACK_WEBHOOK_URL || "https://hooks.slack.com/services/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",  
-    //     //muy hook : https://hooks.slack.com/services/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
-    //     notifyOnlyOnFailure: true,     
-    //     message:'Test Report'   
-    //   }]
+    //     ['sauce', {
+    //         sauceConnect: true,
+    //         sauceConnectOpts: {
+    //             // ...
+    //         }
+    //     }]    //     ,
+        
+    // //     [slack, {
+    // //     webhook: process.env.SLACK_WEBHOOK_URL || "https://hooks.slack.com/services/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",  
+    // //     //muy hook : https://hooks.slack.com/services/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
+    // //     notifyOnlyOnFailure: true,     
+    // //     message:'Test Report'   
+    // //   }]
     ],
     
     // Framework you want to run your specs with.
@@ -260,8 +280,10 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    onPrepare: function (config, capabilities) {
+        process.env.PASSED=0;
+        process.env.FAILED=0;
+    },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -321,8 +343,17 @@ exports.config = {
     /**
      * Runs after a Cucumber scenario
      */
-    // afterScenario: function (world) {
-    // },
+    afterScenario: function (world) {
+        console.log("after scenario+++++++++")
+        console.log(world.result.status)
+        console.log(world)
+        console.log("added results : ",process.env.PASSED," ",process.env.FAILED)
+        process.env.PASSED = Number(process.env.PASSED)+1
+        process.env.FAILED = Number(process.env.FAILED)+1;
+        console.log("added results : ",process.env.PASSED," ",process.env.FAILED)
+
+
+    },
     /**
      * Runs after a Cucumber feature
      */
@@ -363,8 +394,11 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
+    onComplete: function(exitCode, config, capabilities, results) {
+        console.log("on complete ++++++++++++");
+        console.log("results: ",results)
+        console.log("added results : ",process.env.PASSED," ",process.env.FAILED)
+    },
     /**
     * Gets executed when a refresh happens.
     * @param {String} oldSessionId session ID of the old session
